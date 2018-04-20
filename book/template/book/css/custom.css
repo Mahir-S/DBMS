@@ -1,0 +1,35 @@
+html{
+	height: 100%;
+}
+body{
+	margin-top : 50px ;
+	
+}
+.basic{
+	color:#DF514E;
+	padding: 140px
+}
+
+.basic h1{
+	font-size:150px;
+	font-weight:700;
+}
+.basic p{
+	font-size:100px;
+	font-weight:300;
+}
+
+#a{
+    background-image: url("../images/stadium.jpg");
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#c{
+	
+	background-image: url("../images/back.jpeg");
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:white;
+}
