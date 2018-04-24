@@ -7,4 +7,7 @@ class Match(models.Model):
 	team2=models.CharField(max_length=30)
 
 	def __str__(self):
-		return team1+" VS "+team2
+		return self.team1+" VS "+self.team2
+
+	class Meta:
+		ordering = ('match_date',)
