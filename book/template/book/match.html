@@ -60,6 +60,7 @@
     </nav>
     <br>
     {% for match in matchlist %}
+        {{match.id}}
         {{match.match_date}}
         {{match.team1}}
         {{match.team2}}
@@ -80,9 +81,9 @@
                         </div>
                         <div class="col-sm-7 ">
                             <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
-                            <img src="srh.png" style="width: 80px;height: 60px;">
+                            <img src="{% static "images/srh.jpg" %}" style="width: 80px;height: 60px;">
                             <strong>&nbsp; vs &nbsp;</strong>
-                            <img src="csk.png" style="width: 80px;height: 60px;">
+                            <img src="{% static "images/csk.png" %}" style="width: 80px;height: 60px;">
                             <strong class="fstyle"> &emsp; Chennai Super Kings</strong>
                         </div>
                         <div class="col-sm-1">
@@ -109,6 +110,7 @@
                             Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
                         </div>
                         <div class="col-sm-7 ">
+
                             <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
                             <img src="srh.png" style="width: 80px;height: 60px;">
                             <strong>&nbsp; vs &nbsp;</strong>
