@@ -1,0 +1,53 @@
+{% load staticfiles %}
+{% load static %} 
+<!DOCTYPE html>
+<html >
+	<head>
+		<title>LOGIN PAGE</title>
+		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+		
+
+		
+	</head>
+	<body>
+		<div class="container-fluid bg">
+			<DIV class="col-sm-12 col-sm-offset-1">
+				<br>
+				<h3> &emsp;&emsp;&emsp;WELCOME TO HYDERABAD CRICKET STADIUM IPL TICKET BOOKING SYSTEM CENTER</h2>
+			</DIV>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12"></div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						
+							<div class="d">
+								<h1>SIGN UP PAGE</h1>
+							</div>
+							<div class="form-group">
+							{% block content %}
+							  <h2>Sign up</h2>
+							  <form  method="POST">
+							    {% csrf_token %}
+							    {% for field in form %}
+							      <p>
+							        {{ field.label_tag }}<br>
+							        {{ field }}
+							        {% if field.help_text %}
+							          <small style="color: grey">{{ field.help_text }}</small>
+							        {% endif %}
+							        {% for error in field.errors %}
+							          <p style="color: red">{{ error }}</p>
+							        {% endfor %}
+							      </p>
+							    {% endfor %}
+							    <button type="submit" class="btn btn-success btn-block btn-block login-button">Sign up</button>
+							  </form>
+							{% endblock %}
+								
+						
+					</div>
+				<div class="col-md-4 col-sm-4 col-xs-12"></div>
+			</div>		
+		</div>
+	</body>		
+</html>	
