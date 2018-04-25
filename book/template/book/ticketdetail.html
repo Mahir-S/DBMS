@@ -1,0 +1,224 @@
+{% load staticfiles %}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+<style>
+    *{
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        color: #111111; 
+    }
+    .abc
+    {
+        border-left: 50px ;
+        border-right: 50px;
+    }
+    .bg
+    {
+        background: #fff;
+    }
+    .p
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .fstyle
+    {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .well
+    {
+        height: 100px;
+    }
+</style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" style="background-color: #034f84;" >
+        <div class="container-fluid" style="background-color: #034f84;">
+
+            <div class="navbar-header">
+                
+                <a  href="#">
+                    <img src="ipl.jpg" style="height: 50px;width: 60px;"> 
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#" style="background-color: #034f84;color: #fff;">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="signup.html" style="color: #fff;"><span class="glyphicon glyphicon-user" style="color: #fff;"></span> Sign Up</a></li>
+                <li><a href="login.html" style="color: #fff;"><span class="glyphicon glyphicon-log-in" style="color: #fff;"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    {% for match in matchlist %}
+        {{match.id}}
+        {{match.match_date}}
+        {{match.team1}}
+        {{match.team2}}
+    {% endfor %}    
+    <h3>&emsp;Sunday,<strong>22th April 2018</strong></h3>  
+      
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12 abc">
+                <div class="well bg">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong>16:00 IST(10:30 GMT)</strong>
+                            <br>
+                            <p>
+                            <strong>Match 20</strong>
+                            Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+                        </div>
+                        <div class="col-sm-7 ">
+                            <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
+                            <img src="{% static "images/srh.jpg" %}" style="width: 80px;height: 60px;">
+                            <strong>&nbsp; vs &nbsp;</strong>
+                            <img src="{% static "images/csk.png" %}" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; Chennai Super Kings</strong>
+                        </div>
+                        <div class="col-sm-1">
+                            <br>
+                            <a href="22.html"  type="button" id="button" class="btn btn-primary btn-block btn-block login-button">Tickets</a>  
+                        </div>
+                    </div>
+                </div>
+            </div>    
+      </div>
+    </div>
+
+    <h3>&emsp;Thursday,<strong>26th April 2018</strong></h3>  
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12 abc">
+                <div class="well bg">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong>20:00 IST(14:30 GMT)</strong>
+                            <br>
+                            <p>
+                            <strong>Match 25</strong>
+                            Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+                        </div>
+                        <div class="col-sm-7 ">
+
+                            <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
+                            <img src="srh.png" style="width: 80px;height: 60px;">
+                            <strong>&nbsp; vs &nbsp;</strong>
+                            <img src="kxip.jpg" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; Kings XI Punjab</strong>
+                        </div>
+                        <div class="col-sm-1">
+                            <br>
+                            <a href="26.html"  type="button" id="button" class="btn btn-primary btn-block btn-block login-button">Tickets</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>    
+      </div>
+    </div>
+
+    <h3>&emsp;Saturday,<strong>5th May 2018</strong></h3>  
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12 abc">
+                <div class="well bg">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong>20:00 IST(14:30 GMT)</strong>
+                            <br>
+                            <p>
+                            <strong>Match 36</strong>
+                            Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+                        </div>
+                        <div class="col-sm-7 ">
+                            <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
+                            <img src="srh.png" style="width: 80px;height: 60px;">
+                            <strong>&nbsp; vs &nbsp;</strong>
+                            <img src="dd.png" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; Delhi Daredevils</strong>
+                        </div>
+                        <div class="col-sm-1">
+                            <br>
+                            <a href="5.html"  type="button" id="button" class="btn btn-primary btn-block btn-block login-button">Tickets</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>    
+      </div>
+    </div>
+
+    <h3>&emsp;Monday,<strong>7th May 2018</strong></h3>  
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12 abc">
+                <div class="well bg">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong>20:00 IST(14:30 GMT)</strong>
+                            <br>
+                            <p>
+                            <strong>Match 39</strong>
+                            Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+                        </div>
+                        <div class="col-sm-7 ">
+                            <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
+                            <img src="srh.png" style="width: 80px;height: 60px;">
+                            <strong>&nbsp; vs &nbsp;</strong>
+                            <img src="rcb.png" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; Royal Challengers Bangalore</strong>
+                        </div>
+                        <div class="col-sm-1">
+                            <br>
+                            <a href="7.html"  type="button" id="button" class="btn btn-primary btn-block btn-block login-button">Tickets</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>    
+      </div>
+    </div>
+
+    <h3>&emsp;Saturday,<strong>19th May 2018</strong></h3>  
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12 abc">
+                <div class="well bg">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong>20:00 IST(14:30 GMT)</strong>
+                            <br>
+                            <p>
+                            <strong>Match 54</strong>
+                            Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+                        </div>
+                        <div class="col-sm-7 ">
+                            <strong class="fstyle">Sunrisers Hyderabad &emsp;</strong>
+                            <img src="srh.png" style="width: 80px;height: 60px;">
+                            <strong>&nbsp; vs &nbsp;</strong>
+                            <img src="kkr.jpg" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; Kolkata Knight Riders</strong>
+                        </div>
+                        <div class="col-sm-1">
+                            <br>
+                            <a href="19.html"  type="button" id="button" class="btn btn-primary btn-block btn-block login-button">Tickets</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>    
+      </div>
+    </div>
+
+
+
+
+</body>
+</html>

@@ -13,7 +13,7 @@ def match(request):
 	    	matchlist = Match.objects.filter(match_date__gt=dt.now()).order_by('match_date')    
 	    except:
 	        matchlist = []
-	    return render(request, 'book/match.html', {'matchlist': matchlist})
+	    return render(request, 'book/match2.html', {'matchlist': matchlist})
 
 def signup(request):
 	 print("hi",request.method)

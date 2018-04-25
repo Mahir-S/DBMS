@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'book','template','book'),
+    os.path.join(BASE_DIR,'book','template','book','images'),
 )
 
 # Internationalization
