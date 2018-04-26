@@ -8,7 +8,7 @@ class Match(models.Model):
 	team1=models.CharField(max_length=30)
 	team2=models.CharField(max_length=30)
 	day=models.CharField(max_length=20,)
-	match_no=models.IntegerField()
+	match_no=models.IntegerField(primary_key=True)
 	image1=models.ImageField(default='/images/srh.png',unique=False)
 	image2=models.ImageField(default='/images/srh.png',unique=False)
 	def __str__(self):
@@ -16,18 +16,6 @@ class Match(models.Model):
 
 	class Meta:
 		ordering = ('match_date',)
-"""
-class Match(models.Model):
-	match_date=models.DateTimeField('MATCH DATE')
-	team1=models.CharField(max_length=30)
-	team2=models.CharField(max_length=30)
-
-	def __str__(self):
-		return self.team1+" VS "+self.team2
-
-	class Meta:
-		ordering = ('match_date',)
-"""
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -35,8 +23,31 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     last_name=models.CharField(max_length=30,blank=True)
 
-    
+    def __str__(self):
+    	return first_name
 
+class Match_book(models.Model):
+	match=models.ForeignKey(Match,on_delete=models.CASCADE)
+	stand=models.CharField(max_length=30)
+	tier1_price=models.IntegerField(default=1000)
+	tier2_price=models.IntegerField(default=1000)
+	tier1_availability=models.IntegerField(default=500)
+	tier2_availability=models.IntegerField(default=500)
+
+	
+	class Meta:
+		unique_together=(('match', 'stand'),)
+"""
+class Tickets(models.Model):
+	match=models.ForeignKey(Match,on_delete=models.CASCADE)
+	stand=models.CharField(max_length=30)
+	tier_no=models.IntegerField(unique=False)
+	user=models.ForeignKey(User,unique=False)
+	number=models.IntegerField()
+
+	class Meta:
+		unique_together=(('match','user','stand','tier_no'),)
+"""
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
