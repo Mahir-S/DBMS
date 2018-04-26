@@ -37,17 +37,20 @@ class Match_book(models.Model):
 	
 	class Meta:
 		unique_together=(('match', 'stand'),)
-"""
+
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='deleted')[0]
+
 class Tickets(models.Model):
 	match=models.ForeignKey(Match,on_delete=models.CASCADE)
 	stand=models.CharField(max_length=30)
 	tier_no=models.IntegerField(unique=False)
-	user=models.ForeignKey(User,unique=False)
+	user=models.ForeignKey(User,unique=False,on_delete=models.SET(get_sentinel_user))
 	number=models.IntegerField()
 
 	class Meta:
 		unique_together=(('match','user','stand','tier_no'),)
-"""
+
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -1,0 +1,294 @@
+{%load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+<style>
+*{color:#111111;}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px 10px;
+    text-align: left;    
+}
+
+</style>
+</head>
+
+<body style="background-color:powderblue;">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            <!--<li><a href="login.html">Login</a></li>-->
+            <li class="active"><a href="/home/">Home</a></li>
+            <li CALSS="active"><a href="/match/">List of Upcoming Matches</a></li>
+            
+            <!--<li><a href="register.html">Register</a></li>-->
+            {% if request.user.is_authenticated %}
+           <li><a href="#">Welcome {{request.user.username}}</a></li>
+           <li><a href="/logout/">Logout</a></li>
+           {% else %}
+           <li><a href="/login/">Sign In</a></li>
+           <li><a href="/signup/">Register</a></li>
+           {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+   <br>
+   <br>
+
+    <div class="col-sm-4 col-sm-offset-4">
+    	<h1>{{match.team1}} VS {{match.team2}}</h1>
+        <strong>{{match.match_date}}  {{match.day}}</strong>
+        <br>
+        <p>
+        <strong>{{match.match_no}}</strong>
+        Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
+    </div>
+    <br>
+    <form method="POST">
+    	{% csrf_token %}
+    <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+	    <table style="width:100%">
+	    <div class="col-sm-4 col-sm-offset-4">
+	  	<caption class="col-sm-offset-4"><strong><h3
+	  		>Ticket Description</h3></strong></caption>
+	    </div>
+	  	<tr>
+	    	<th style="background-color:#034f84;color: #fff;">Stand Name</th>
+	    	<th colspan="3" style="background-color:#034f84;color: #fff;">Tier 1</th>
+	    	<th colspan="3" style="background-color:#034f84;color: #fff;">Tier 2</th>
+		</tr>
+		<tr>
+			<th style="background-color:#034f84;color: #fff;"></th>
+			<th>Availabilty</th>
+			<th>Price</th>
+			<th>No. of Tickets</th>
+			<th>Availabilty</th>
+			<th>Price</th>
+			<th>No. of Tickets</th>
+		</tr>
+		<tr>
+		    <td style="background-color:#034f84;color: #fff;">North</td>
+		    {%if descr.North_tier1_availability == 0%}
+		    <td>{{descr.North_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_tier1_availability}}</td>
+		    <td>{{descr.North_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north.tier1_demand}}
+
+			</div></td>
+		    {%if descr.North_tier2_availability == 0%}
+		    <td>{{descr.North_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_tier2_availability}}</td>
+		    <td>{{descr.North_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		    <td style="background-color:#034f84;color: #fff;">North-East</td>
+		    {%if descr.North_east_tier1_availability == 0%}
+		    <td>{{descr.North_east_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_east_tier1_availability}}</td>
+		    <td>{{descr.North_east_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north_east.tier1_demand}}
+
+			</div></td>
+		    {%if descr.North_east_tier2_availability == 0%}
+		    <td>{{descr.North_east_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_east_tier2_availability}}</td>
+		    <td>{{descr.North_east_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north_east.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		    <<td style="background-color:#034f84;color: #fff;">East</td>
+		    {%if descr.East_tier1_availability == 0%}
+		    <td>{{descr.East_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.East_tier1_availability}}</td>
+		    <td>{{descr.East_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_east.tier1_demand}}
+
+			</div></td>
+		    {%if descr.East_tier2_availability == 0%}
+		    <td>{{descr.East_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.East_tier2_availability}}</td>
+		    <td>{{descr.East_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_east.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		    <td style="background-color:#034f84;color: #fff;">South-East</td>
+		    {%if descr.South_East_tier1_availability == 0%}
+		    <td>{{descr.South_East_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_East_tier1_availability}}</td>
+		    <td>{{descr.South_East_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south_east.tier1_demand}}
+
+			</div></td>
+		    {%if descr.South_East_tier2_availability == 0%}
+		    <td>{{descr.South_East_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_East_tier2_availability}}</td>
+		    <td>{{descr.South_East_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south_east.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		    <td style="background-color:#034f84;color: #fff;"> South </td>
+		    {%if descr.South_tier1_availability == 0%}
+		    <td>{{descr.South_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_tier1_availability}}</td>
+		    <td>{{descr.South_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south.tier1_demand}}
+
+			</div></td>
+		    {%if descr.South_tier2_availability == 0%}
+		    <td>{{descr.South_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_tier2_availability}}</td>
+		    <td>{{descr.South_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		    <td style="background-color:#034f84;color: #fff;"> South-West</td>
+		    {%if descr.South_West_tier1_availability == 0%}
+		    <td>{{descr.South_West_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_West_tier1_availability}}</td>
+		    <td>{{descr.South_West_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south_west.tier1_demand}}
+
+			</div></td>
+		    {%if descr.South_West_tier2_availability == 0%}
+		    <td>{{descr.South_West_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.South_West_tier2_availability}}</td>
+		    <td>{{descr.South_West_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_south_west.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		     <td style="background-color:#034f84;color: #fff;"> West</td>
+		    {%if descr.West_tier1_availability == 0%}
+		    <td>{{descr.West_tier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.West_tier1_availability}}</td>
+		    <td>{{descr.West_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_west.tier1_demand}}
+
+			</div></td>
+		    {%if descr.West_tier2_availability == 0%}
+		    <td>{{descr.West_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.West_tier2_availability}}</td>
+		    <td>{{descr.West_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_west.tier2_demand}}
+			</div></td>
+		</tr>
+		<tr>
+		     <td style="background-color:#034f84;color: #fff;"> North-West</td>
+		    {%if descr.North_West_tier1_availability == 0%}
+		    <td>{{descr.North_Westtier1_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_West_tier1_availability}}</td>
+		    <td>{{descr.North_West_tier1_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north_west.tier1_demand}}
+
+			</div></td>
+		    {%if descr.North_West_tier2_availability == 0%}
+		    <td>{{descr.North_West_tier2_availability}}</td>
+		    <td>NA</td>
+		    {%else%}
+		    <td>{{descr.North_West_tier2_availability}}</td>
+		    <td>{{descr.North_West_tier2_price}}/-</td>
+		    {%endif%}
+		    <td><div class="form-group">
+			{{form_north_west.tier2_demand}}
+			</div></td>
+		</tr>
+		</table>
+	</div>
+	</div>
+	<br>
+	
+
+	<div class="col-sm-2 col-sm-offset-9"><button type="submit" class="btn btn-success btn-block btn-block login-button">Submit</button> </div><br>
+	
+	<div class="row"></div>
+	
+	</form>
+
+<br>
+
+</body>
+</html>
