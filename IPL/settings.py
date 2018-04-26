@@ -109,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'book','template','book'),
     os.path.join(BASE_DIR,'book','template','book','images'),
 )
 
@@ -128,6 +129,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+# STATIC_URL = '/book/template/book/'
 STATIC_URL = '/book/template/book/'
 LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/home"
