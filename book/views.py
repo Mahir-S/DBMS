@@ -4,6 +4,7 @@ from datetime import datetime as dt
 from .forms import SignUpForm,Booking_form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def home(request):
 	return render(request, 'book/home.html',)
@@ -123,6 +124,234 @@ def book(request,id):
 					ob=Match_book.objects.get(match=m,stand='North')
 					ob.tier1_availability=ob.tier1_availability-form_north.cleaned_data.get('tier1_demand')
 					ob.save()
-			#obj=Tickets()
+			if form_north.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='North',user=request.user,tier_no=2)
+					obj.number=obj.number+form_north.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North')
+					ob.tier2_availability=ob.tier2_availability-form_north.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='North',tier_no=2,user=request.user,number=form_north.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North')
+					ob.tier2_availability=ob.tier2_availability-form_north.cleaned_data.get('tier2_demand')
+					ob.save()
 
+			if form_south.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South',user=request.user,tier_no=1)
+					obj.number=obj.number+form_south.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South')
+					ob.tier1_availability=ob.tier1_availability-form_south.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South',tier_no=1,user=request.user,number=form_south.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South')
+					ob.tier1_availability=ob.tier1_availability-form_south.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_south.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South',user=request.user,tier_no=2)
+					obj.number=obj.number+form_south.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South')
+					ob.tier2_availability=ob.tier2_availability-form_south.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South',tier_no=2,user=request.user,number=form_south.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South')
+					ob.tier2_availability=ob.tier2_availability-form_south.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_east.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='East',user=request.user,tier_no=1)
+					obj.number=obj.number+form_east.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='East')
+					ob.tier1_availability=ob.tier1_availability-form_east.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='East',tier_no=1,user=request.user,number=form_east.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='East')
+					ob.tier1_availability=ob.tier1_availability-form_east.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_east.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='East',user=request.user,tier_no=2)
+					obj.number=obj.number+form_east.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='East')
+					ob.tier2_availability=ob.tier2_availability-form_east.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='East',tier_no=2,user=request.user,number=form_east.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='East')
+					ob.tier2_availability=ob.tier2_availability-form_east.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_west.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='West',user=request.user,tier_no=1)
+					obj.number=obj.number+form_west.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='West')
+					ob.tier1_availability=ob.tier1_availability-form_west.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='West',tier_no=1,user=request.user,number=form_west.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='West')
+					ob.tier1_availability=ob.tier1_availability-form_west.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_west.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='West',user=request.user,tier_no=2)
+					obj.number=obj.number+form_west.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='West')
+					ob.tier2_availability=ob.tier2_availability-form_west.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='West',tier_no=2,user=request.user,number=form_west.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='West')
+					ob.tier2_availability=ob.tier2_availability-form_west.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_south_west.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South-West',user=request.user,tier_no=1)
+					obj.number=obj.number+form_south_west.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-West')
+					ob.tier1_availability=ob.tier1_availability-form_south_west.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South-West',tier_no=1,user=request.user,number=form_south_west.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-West')
+					ob.tier1_availability=ob.tier1_availability-form_south_west.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_south_west.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South-West',user=request.user,tier_no=2)
+					obj.number=obj.number+form_south_west.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-West')
+					ob.tier2_availability=ob.tier2_availability-form_south_west.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South-West',tier_no=2,user=request.user,number=form_south_west.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-West')
+					ob.tier2_availability=ob.tier2_availability-form_south_west.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_south_east.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South-East',user=request.user,tier_no=1)
+					obj.number=obj.number+form_south_east.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-East')
+					ob.tier1_availability=ob.tier1_availability-form_south_east.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South-East',tier_no=1,user=request.user,number=form_south_east.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-East')
+					ob.tier1_availability=ob.tier1_availability-form_south_east.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_south_east.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='South-East',user=request.user,tier_no=2)
+					obj.number=obj.number+form_south_east.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-East')
+					ob.tier2_availability=ob.tier2_availability-form_south_east.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='South-East',tier_no=2,user=request.user,number=form_south_east.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='South-East')
+					ob.tier2_availability=ob.tier2_availability-form_south_east.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_north_west.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='North-West',user=request.user,tier_no=1)
+					obj.number=obj.number+form_north_west.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-West')
+					ob.tier1_availability=ob.tier1_availability-form_north_west.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='North-West',tier_no=1,user=request.user,number=form_north_west.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-West')
+					ob.tier1_availability=ob.tier1_availability-form_north_west.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_north_west.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='North-West',user=request.user,tier_no=2)
+					obj.number=obj.number+form_north_west.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-West')
+					ob.tier2_availability=ob.tier2_availability-form_north_west.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='North-West',tier_no=2,user=request.user,number=form_north_west.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-West')
+					ob.tier2_availability=ob.tier2_availability-form_north_west.cleaned_data.get('tier2_demand')
+					ob.save()
+			if form_north_east.cleaned_data.get('tier1_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='North-east',user=request.user,tier_no=1)
+					obj.number=obj.number+form_north_east.cleaned_data.get('tier1_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-east')
+					ob.tier1_availability=ob.tier1_availability-form_north_east.cleaned_data.get('tier1_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='North-east',tier_no=1,user=request.user,number=form_north_east.cleaned_data.get('tier1_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-east')
+					ob.tier1_availability=ob.tier1_availability-form_north_east.cleaned_data.get('tier1_demand')
+					ob.save()
+			if form_north_east.cleaned_data.get('tier2_demand')!=0:
+				try:
+					obj=Tickets.objects.get(match=m,stand='North-east',user=request.user,tier_no=2)
+					obj.number=obj.number+form_north_east.cleaned_data.get('tier2_demand')
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-east')
+					ob.tier2_availability=ob.tier2_availability-form_north_east.cleaned_data.get('tier2_demand')
+					ob.save()
+				except :
+					obj=Tickets(match=m,stand='North-east',tier_no=2,user=request.user,number=form_north_east.cleaned_data.get('tier2_demand'))
+					obj.save()
+					ob=Match_book.objects.get(match=m,stand='North-east')
+					ob.tier2_availability=ob.tier2_availability-form_north_east.cleaned_data.get('tier2_demand')
+					ob.save()
+			return redirect('http://127.0.0.1:8000/profile')
+		else :
+			messages.error(request,'Maximum limit exceeded')
+			return redirect('http://127.0.0.1:8000/book/'+str(id))#check this out
+@login_required			
+def profile(request):
+	tickets=Tickets.objects.filter(user=request.user)
+	return render(request,'book/profile.html',{'tickets':tickets})
 
+def delete_ticket(request,s,id,tno):
+	m=Match.objects.get(match_no=id)
+	obj=Tickets.objects.get(match=m,stand=s,tier_no=tno,user=request.user)
+	ob=Match_book.objects.get(match=m,stand=s)
+	if tno==1:
+		ob.tier1_availability=ob.tier1_availability+obj.number
+	else:
+		ob.tier2_availability=ob.tier2_availability+obj.number
+	ob.save()
+	obj.delete()
+	return redirect('http://127.0.0.1:8000/profile')

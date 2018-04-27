@@ -39,6 +39,7 @@
 </head>
 
 <body>
+
     {% if matchlist %}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -59,7 +60,7 @@
             
             <!--<li><a href="register.html">Register</a></li>-->
             {% if request.user.is_authenticated %}
-           <li><a href="#">Welcome {{request.user.username}}</a></li>
+           <li><a href="/profile/">Welcome {{request.user.username}}</a></li>
            <li><a href="/logout/">Logout</a></li>
            {% else %}
            <li><a href="/login/">Sign In</a></li>
@@ -73,7 +74,8 @@
     <br>
     <br>
     <br>
-
+    {{messages}}lsdmflksdmflksdm
+    <h1 align='center' style="color:#111111;">Match Schedule for IPL 2018 in Hyderabad</h1>
     {% for match in matchlist %}
     <h3>&emsp;{{match.day}},<strong>{{match.match_date.date}}</strong></h3>  
       

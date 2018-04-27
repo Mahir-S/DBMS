@@ -6,7 +6,7 @@
 		<title>LOGIN PAGE</title>
 		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 		
-		<link href="{% static "css/global.css" %}" rel="stylesheet">
+		<link href="{% static "css/global2.css" %}" rel="stylesheet">
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -26,7 +26,7 @@
 		        <li><a href="/home/">Home</a></li>
 		        <!--<li><a href="register.html">Register</a></li>-->
 		        {% if request.user.is_authenticated %}
-		       <li><a href="#">Welcome {{request.user.username}}</a></li>
+		       <li><a href="/profile/">Welcome {{request.user.username}}</a></li>
 		       <li><a href="/logout/">Logout</a></li>
 		       {% else %}
 		       
@@ -38,23 +38,32 @@
 		</nav>
 		<br>
 		<br>
-		<br>
+		{% for elem in forms%}
+		{elem}
+		{%endfor%}
 		<div class="container-fluid bg">
 			<DIV class="col-sm-12 col-sm-offset-1">
 				<br>
-				<h3> &emsp;&emsp;&emsp;WELCOME TO HYDERABAD CRICKET STADIUM IPL TICKET BOOKING SYSTEM CENTER</h2>
+				<h3 style="color:#fff;"> &emsp;&emsp;&emsp;WELCOME TO HYDERABAD CRICKET STADIUM IPL TICKET BOOKING SYSTEM CENTER</h3>
 			</DIV>
 			<div class="row ">
 				<div class="col-md-4 col-sm-4 col-xs-12"></div>
 					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div align='center' style="width:400px;height:250px;border:1px solid #fff;
+						margin-top: 20vh;padding:10px 10px;-webkit-box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);
+							-moz-box-shadow: 6px -4px 71px 10px rgba(0,0,0,0.75);
+							box-shadow:  6px -4px 71px 10px rgba(0,0,0,0.75);">
 						{% block 'content' %}
-						<h1>LOGIN</h1>
+						<h1 style="color:#fff;">LOGIN</h1>
 						<form action="" method="post">
 						       {{ form.as_p }}
-						       <input type="submit" value="Login">
+						       <div class="row col-sm-6 col-md-offset-3"><input type="submit" value="Login" class="btn btn-success"></div>
 						       {% csrf_token %}
+
 						 </form>
+						</div>
 						 {% endblock %}	
+						
 					</div>
 				<div class="col-md-4 col-sm-4 col-xs-12"></div>
 			</div>		

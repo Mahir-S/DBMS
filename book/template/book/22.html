@@ -39,7 +39,7 @@ th, td {
             
             <!--<li><a href="register.html">Register</a></li>-->
             {% if request.user.is_authenticated %}
-           <li><a href="#">Welcome {{request.user.username}}</a></li>
+           <li><a href="/profile/">Welcome {{request.user.username}}</a></li>
            <li><a href="/logout/">Logout</a></li>
            {% else %}
            <li><a href="/login/">Sign In</a></li>
@@ -51,7 +51,7 @@ th, td {
     </nav>
    <br>
    <br>
-
+   
     <div class="col-sm-4 col-sm-offset-4">
     	<h1>{{match.team1}} VS {{match.team2}}</h1>
         <strong>{{match.match_date}}  {{match.day}}</strong>
@@ -65,10 +65,14 @@ th, td {
     	{% csrf_token %}
     <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
+    	{% if messages %}
+    	{% for msg in messages %}
+    		{{ msg.tags }}
+    	{% endfor %}
+    	{% endif %}
 	    <table style="width:100%">
 	    <div class="col-sm-4 col-sm-offset-4">
-	  	<caption class="col-sm-offset-4"><strong><h3
-	  		>Ticket Description</h3></strong></caption>
+	  	<caption class="col-sm-offset-4"><strong><h3>Ticket Description</h3></strong></caption>
 	    </div>
 	  	<tr>
 	    	<th style="background-color:#034f84;color: #fff;">Stand Name</th>

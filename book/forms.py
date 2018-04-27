@@ -5,8 +5,8 @@ from django.core.exceptions import ValidationError
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(help_text='Required')
-    first_name=forms.CharField()
-    last_name=forms.CharField()
+    first_name=forms.CharField(required=False)
+    last_name=forms.CharField(required=False)
 
     class Meta:
         model = User

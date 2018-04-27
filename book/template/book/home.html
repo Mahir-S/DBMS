@@ -52,7 +52,7 @@
             <li><a href="/match/">List of Upcoming Matches</a></li>
             <!--<li><a href="register.html">Register</a></li>-->
             {% if request.user.is_authenticated %}
-           <li><a href="#">Welcome {{request.user.username}}</a></li>
+           <li><a href="/profile/">Welcome {{request.user.username}}</a></li>
            <li><a href="/logout/">Logout</a></li>
            {% else %}
            <li><a href="/login/">Sign In</a></li>
@@ -66,13 +66,13 @@
 
     
 
+    <br><br>
 
-
-    <div class="container">
-
-      <div class="starter-template basic">
-        <h1>BOOKMYMATCH</h1>
-        <p class="lead">LET THE GAMES BEGIN.</p>
+    <div class="row col-sm-offset-3">
+       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1 style="color:#DF514E;padding: 20px;font-size:100px;">BOOKMYMATCH</h1>
+        <p align='left' style="color:#fffeee;font-family:ariel, italics;padding: 20px;font-size:60px;">&emsp;&emsp;&emsp;LET THE GAMES BEGIN.</p>
+      </div>
       </div>
 
     </div><!-- /.container -->

@@ -1,0 +1,81 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+	<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+<style>
+
+*{color:#111111;}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px 10px;
+    text-align: left;    
+}
+</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/">Home</a></li>
+            <!--<li><a href="login.html">Login</a></li>-->
+            <li><a href="/match/">List of Upcoming Matches</a></li>
+            <!--<li><a href="register.html">Register</a></li>-->
+            {% if request.user.is_authenticated %}
+           <li><a href="#">Welcome {{request.user.username}}</a></li>
+           <li><a href="/logout/">Logout</a></li>
+           {% else %}
+           <li><a href="/login/">Sign In</a></li>
+           <li><a href="/signup/">Register</a></li>
+           {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <br>
+    <br>
+    <div class="row col-sm-4 col-sm-offset-3">
+	<h1 >{{request.user}}</h1>
+</div>
+	<div class="row col-sm-10 col-sm-offset-1">
+	<table style="width: 100%;">
+		<caption>70% amount will be refunded for cancellation</caption>
+		<tr>
+			<th style="background-color:#034f84;color: #fff;">match_no</th>
+			<th style="background-color:#034f84;color: #fff;">match_title</th>
+			<th style="background-color:#034f84;color: #fff;">stand_name</th>
+			<th style="background-color:#034f84;color: #fff;">tier_no</th>
+			<th style="background-color:#034f84;color: #fff;">no.of_tickets</th>
+			<th style="background-color:#034f84;color: #fff;">cancellation</th>
+		</tr>
+		{% for ticket in tickets%}	
+		<tr>
+			<td style="background-color:#034f84;color: #ffffff;">{{ticket.match.match_no}}</td>
+			<td>{{ticket.match.team1}} VS {{ticket.match.team2}}</td>
+			<td>{{ticket.stand}}</td>
+			<td>{{ticket.tier_no}}</td>
+			<td>{{ticket.number}}</td>
+			<td><div class="row col-sm-8 col-sm-offset-2"><a href="/profile/{{ ticket.match.match_no }}/{{ticket.stand}}/{{ticket.tier_no}}/"  type="button" id="button" class="btn btn-success btn-block btn-block login-button">cancel</a></div></td>
+		</tr>
+		{%endfor%}
+		
+	</table>
+</div>
+</body>
+</html>
