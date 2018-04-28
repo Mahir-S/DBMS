@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Match,Match_book,Tickets
+from .models import Match,Match_book,Tickets,Team
 from datetime import datetime as dt
 from .forms import SignUpForm,Booking_form
 from django.contrib.auth import login, authenticate
@@ -14,7 +14,7 @@ def match(request):
 		matchlist = Match.objects.filter(match_date__gt=dt.now()).order_by('match_date')
 	except:
 		matchlist = []
-	return render(request, 'book/match2.html', {'matchlist': matchlist})
+	return render(request, 'book/match2.html', {'matchlist': matchlist},{})
 	
 def createdictionary(id):
 	a=['North','North-east','East','South-East','South','South-West','West','North-West']

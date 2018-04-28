@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
-MEDIA_ROOT = PROJECT_PATH + '/media/'
+MEDIA_URL = PROJECT_PATH + '/book/template/book/images/'
 #STATIC_ROOT= os.path.join(BASE_DIR,'book','template','book')
 TEMPLATE_DIRS = (
     PROJECT_PATH + '/templates/',

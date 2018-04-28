@@ -74,7 +74,7 @@
     <br>
     <br>
     <br>
-    {{messages}}lsdmflksdmflksdm
+    
     <h1 align='center' style="color:#111111;">Match Schedule for IPL 2018 in Hyderabad</h1>
     {% for match in matchlist %}
     <h3>&emsp;{{match.day}},<strong>{{match.match_date.date}}</strong></h3>  
@@ -92,12 +92,12 @@
                             Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
                         </div>
                         <div class="col-sm-7 ">
-                            <strong class="fstyle">{{match.team1}}&emsp;</strong>
-                     <!-- <img src="{% static "images/srh.jpg" %}" style="width: 80px;height: 60px;">comment-->  
-                          <img src="{% static match.image1.name %}" style="width: 80px;height: 60px;">
+                            <strong class="fstyle">{{match.team_1.name}}&emsp;</strong>
+                        
+                          <img src="/book/template/book/images/{{match.team_1.logo}}" style="width: 80px;height: 60px;">
                             <strong>&nbsp; vs &nbsp;</strong>
-                            <img src="{% static match.image2.name %}" style="width: 80px;height: 60px;">
-                            <strong class="fstyle"> &emsp; {{match.team2}}</strong>
+                          <img src="/book/template/book/images/{{match.team_2.logo}}" style="width: 80px;height: 60px;">
+                            <strong class="fstyle"> &emsp; {{match.team_2.name}}</strong>
                         </div>
                         <div class="col-sm-1">
                             <br>

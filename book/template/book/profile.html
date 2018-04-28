@@ -50,8 +50,12 @@ th, td {
     </nav>
     <br>
     <br>
-    <div class="row col-sm-4 col-sm-offset-3">
-	<h1 >{{request.user}}</h1>
+    <div class="row ">
+	<h1 >&emsp;&emsp;username:{{request.user}}</h1>
+  <div class="row">
+    <h4>&emsp;&emsp;email-id:{{request.user.profile.email}}</h4>
+    <h4>&emsp;&emsp;{{request.user.profile.first_name}}  {{request.user.profile.last_name}}</h4>
+  </div>
 </div>
 	<div class="row col-sm-10 col-sm-offset-1">
 	<table style="width: 100%;">
@@ -67,7 +71,7 @@ th, td {
 		{% for ticket in tickets%}	
 		<tr>
 			<td style="background-color:#034f84;color: #ffffff;">{{ticket.match.match_no}}</td>
-			<td>{{ticket.match.team1}} VS {{ticket.match.team2}}</td>
+			<td>{{ticket.match.team_1.name}} VS {{ticket.match.team_2.name}}</td>
 			<td>{{ticket.stand}}</td>
 			<td>{{ticket.tier_no}}</td>
 			<td>{{ticket.number}}</td>

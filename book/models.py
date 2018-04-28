@@ -3,16 +3,20 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
+
+class Team(models.Model):
+	name=models.CharField(max_length=30,primary_key=True)
+	logo=models.ImageField(unique=True)
+	def __str__(self):
+		return self.name
 class Match(models.Model):
 	match_date=models.DateTimeField('MATCH DATE')
-	team1=models.CharField(max_length=30)
-	team2=models.CharField(max_length=30)
 	day=models.CharField(max_length=20,)
 	match_no=models.IntegerField(primary_key=True)
-	image1=models.ImageField(default='/images/srh.png',unique=False)
-	image2=models.ImageField(default='/images/srh.png',unique=False)
+	team_1=models.ForeignKey(Team,on_delete=models.CASCADE,related_name="team_1",default='Sunrisers Hyderabad')
+	team_2=models.ForeignKey(Team,on_delete=models.CASCADE,related_name="team_2",default='Sunrisers Hyderabad')
 	def __str__(self):
-		return self.team1+" VS "+self.team2
+		return self.team_1.name+" VS "+self.team_2.name
 
 	class Meta:
 		ordering = ('match_date',)
