@@ -51,7 +51,7 @@ th, td {
     </nav>
    <br>
    <br>
-   
+
     <div class="col-sm-8 col-sm-offset-2">
     	<h1>{{match.team_1.name}} VS {{match.team_2.name}}</h1>
         <strong>{{match.match_date}}  {{match.day}}</strong>
@@ -61,6 +61,15 @@ th, td {
         Rajiv Gandhi Intl. Cricket Stadium,Hyderabad</p>
     </div>
     <br>
+     <div class="col-sm-10 col-sm-offset-1">
+   	<h3>
+    	{% if messages %}
+    	{% for msg in messages %}
+    		{{ msg }}
+    	{% endfor %}
+    	{% endif %}
+    </h3>
+    </div>
     <form method="POST">
     	{% csrf_token %}
     <div class="row">

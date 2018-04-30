@@ -12,4 +12,5 @@ urlpatterns = [
     path('book/<int:id>/',views.book,),
     path('profile/',views.profile),
     path('profile/<int:id>/<str:s>/<int:tno>/',views.delete_ticket),
+    path('modify/',views.modify),
 ]

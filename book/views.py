@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Match,Match_book,Tickets,Team
 from datetime import datetime as dt
-from .forms import SignUpForm,Booking_form
+from .forms import SignUpForm,Booking_form,Modify_form
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -337,7 +337,7 @@ def book(request,id):
 					ob.save()
 			return redirect('http://127.0.0.1:8000/profile')
 		else :
-			messages.error(request,'Maximum limit exceeded')
+			messages.error(request,'You have requested for more number of tickets than they are avaialble.Please resubmit.')
 			return redirect('http://127.0.0.1:8000/book/'+str(id))#check this out
 @login_required			
 def profile(request):
@@ -355,3 +355,20 @@ def delete_ticket(request,s,id,tno):
 	ob.save()
 	obj.delete()
 	return redirect('http://127.0.0.1:8000/profile')
+
+@login_required
+def modify(request):
+	if request.method=='POST':
+		form = Modify_form(request.POST)
+		if form.is_valid():
+			request.user.profile.last_name = form.cleaned_data.get('last_name')
+			request.user.profile.first_name = form.cleaned_data.get('first_name')
+			request.user.profile.email = form.cleaned_data.get('email')
+			request.user.save()
+			return redirect('http://127.0.0.1:8000/profile')
+	else :
+		form=Modify_form()
+		form.fields['first_name'].initial=request.user.profile.first_name
+		form.fields['last_name'].initial=request.user.profile.last_name
+		form.fields['email'].initial=request.user.profile.email
+		return render(request,'book/mod.html',{'form':form})

@@ -41,3 +41,8 @@ class Booking_form(forms.Form):
 	def validate2(self,dem,value2):
 		if dem>value2:
 			raise ValidationError("Invalid, must not exceed than {} ". format(value2))
+
+class Modify_form(forms.Form):
+	email = forms.EmailField(help_text='Required')
+	first_name=forms.CharField(required=False)
+	last_name=forms.CharField(required=False)
